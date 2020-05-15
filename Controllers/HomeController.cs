@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AreaCalculator.Models;
+using AreaCalculator.Enums;
 
 namespace AreaCalculator.Controllers
 {
@@ -20,7 +21,9 @@ namespace AreaCalculator.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            FormData form = new FormData().ChosenFigure = null;
+            return View(new FormData());
+            //return View();
         }
 
         public IActionResult Privacy()
@@ -35,9 +38,24 @@ namespace AreaCalculator.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(Figure figure)
+        public ActionResult Index(FormData formData)
         {
-            return View(figure);
+            string sizes = formData.Sizes;
+            double result = 0;
+
+            switch (formData.ChosenFigure)
+            {
+                case Shapes.Kwadrat:
+                    Square sq = new Square();
+                    sq.a = Convert.ToDouble(sizes.Trim());
+                    result = Math.Round(sq.CalculateArea(sq), 3);
+                    break;
+
+              
+            }
+            formData.Area = "Pole wynosi: "+ result;
+            
+            return View(formData);
         }
     }
 }

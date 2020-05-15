@@ -1,6 +1,5 @@
 ﻿@using AreaCalculator.Enums;
-@using AreaCalculator.Models;
-@model AreaCalculator.Models.Figure;
+@model AreaCalculator.Models.FormData;
 @{
     ViewData["Title"] = "Kalkulator powierzchni";
 }
@@ -16,7 +15,8 @@
             {
                 <form method="post">
                     <div class="centered">
-                        @Html.DropDownListFor(m => m.ChosenFigure, new SelectList(Enum.GetValues(typeof(Shapes))), "Wybierz figurę:", new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.Shapes, new SelectList(Enum.GetValues(typeof(Shapes))), 
+                       "Wybierz figurę:", new { @class = "form-control" })
                     </div>
                     <div class="invisible" id="FormSection">
                         <div id="label" class="mt-3"></div>
@@ -24,10 +24,11 @@
                             <input id="Sizes" class="form-control" name="Sizes" type="text" />
                         </div>
                         <button class="btn btn-primary" type="submit">Oblicz</button>
+                        <button class="btn btn-secondary" type="reset">Reset</button>
                     </div>
                 </form>
             }
-            <div id="formResult" class="mt-3 mb-5"></div>
+            <div id="Area" class="mt-3 mb-5">@Model.Area</div>
         </div>
     </div>
 </div>
