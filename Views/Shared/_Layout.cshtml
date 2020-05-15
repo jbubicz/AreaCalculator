@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AreaCalculator</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AreaCalculator</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - AreaCalculator - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(function () {
+            $("#ChosenFigure").change(function () {
+                $("#formResult").text("");
+                $("#FormSection").removeClass("invisible");
+                $("#FormSection").addClass("visible");
+                var selectedValue = $("#ChosenFigure Option:Selected").text();
+                switch (selectedValue) {
+
+                    case "Kwadrat":
+                        $("#label").html("<p>Podaj dane gdzie: <b>a</b> - długość boku<br>Format wprowadzania: <b>a</b></p>")
+                        break;
+                    case "Prostokąt":
+                        $("#label").html("<p>Podaj dane odzielone średnikiem gdzie: <b>a</b> - długość pierwszego boku; <b>b</b> - długość drugiego boku<br>Format wprowadzania: <b>a;b</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
+                        break;
+                    case "Równoległobok":
+                        $("#label").html("<p>Podaj dane odzielone średnikiem gdzie: <b>a</b> - długość boku; <b>h</b> - wysokość równoległoboku<br>Format wprowadzania: <b>a;h</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
+                        break;
+                    case "Romb":
+                        $("#label").html("<p>Podaj dane odzielone średnikiem gdzie: <b>a</b> - długość boku; <b>h</b> - wysokość rombu<br>Format wprowadzania: <b>a;h</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
+                        break;
+                    case "Trapez":
+                        $("#label").html("<p>Podaj dane odzielone średnikiem gdzie: <b>a</b> - długość pierwszej podstawy; <b>b</b> - długość drugiej podstawy <b>h</b> - wysokość trapezu<br>Format wprowadzania: <b>a;b;h</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
+                        break;
+                    case "Trójkąt":
+                        $("#label").html("<p>Podaj dane odzielone średnikiem gdzie: <b>a</b> - długość boku; <b>h</b> - wysokość trójkąta<br>Format wprowadzania: <b>a;h</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
+                        break;
+                    case "Koło":
+                        $("#label").html("<p>Podaj dane gdzie: <b>r</b> - promień koła<br>Format wprowadzania: <b>r</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
+                        break;
+
+                }
+            })
+        })
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
