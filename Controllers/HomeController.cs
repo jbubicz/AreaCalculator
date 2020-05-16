@@ -53,27 +53,63 @@ namespace AreaCalculator.Controllers
 
                 switch (formData.Shape)
                 {
+                    case Shapes.Koło:
+                        Circle circle = new Circle();
+                        circle.DimR = Convert.ToDouble(sizesArray[0].Trim());
+                        result = Math.Round(circle.CalculateArea(), 2);
+                        break;
                     case Shapes.Kwadrat:
                         Square square = new Square();
                         square.DimA = Convert.ToDouble(sizesArray[0].Trim());
                         result = Math.Round(square.CalculateArea(), 2);
                         break;
+                    case Shapes.Prostokąt:
+                        Rectangle rectangle = new Rectangle();
+                        rectangle.DimA = Convert.ToDouble(sizesArray[0].Trim());
+                        rectangle.DimB = Convert.ToDouble(sizesArray[1].Trim());
+                        result = Math.Round(rectangle.CalculateArea(), 2);
+                        break;
+                    case Shapes.Romb:
+                        Rhombus rhombus = new Rhombus();
+                        rhombus.DimA = Convert.ToDouble(sizesArray[0].Trim());
+                        rhombus.DimH = Convert.ToDouble(sizesArray[1].Trim());
+                        result = Math.Round(rhombus.CalculateArea(), 2);
+                        break;
+                    case Shapes.Równoległobok:
+                        Parallelogram parallelogram = new Parallelogram();
+                        parallelogram.DimA = Convert.ToDouble(sizesArray[0].Trim());
+                        parallelogram.DimH = Convert.ToDouble(sizesArray[1].Trim());
+                        result = Math.Round(parallelogram.CalculateArea(), 2);
+                        break;
+                    case Shapes.Trapez:
+                        Trapezoid trapezoid = new Trapezoid();
+                        trapezoid.DimA = Convert.ToDouble(sizesArray[0].Trim());
+                        trapezoid.DimB = Convert.ToDouble(sizesArray[1].Trim());
+                        trapezoid.DimH = Convert.ToDouble(sizesArray[2].Trim());
+                        result = Math.Round(trapezoid.CalculateArea(), 2);
+                        break;
+                    case Shapes.Trójkąt:
+                        Triangle triangle = new Triangle();
+                        triangle.DimA = Convert.ToDouble(sizesArray[0].Trim());
+                        triangle.DimH = Convert.ToDouble(sizesArray[1].Trim());
+                        result = Math.Round(triangle.CalculateArea(), 2);
+                        break;
                 }
 
-                formData.ResultNotification = string.Format("Pole powierzchni wybranej figury {0} wynosi: {1}", formData.Shape, result);
+                formData.ResultNotification = string.Format("Pole powierzchni figury {0} dla podanych wymiarów wynosi: {1}.", formData.Shape, result);
             
-            }
-            catch (FormatException)
-            {
-                formData.ResultNotification = "Podano nieprawidłowe dane";
             }
             catch (NullReferenceException)
             {
-                formData.ResultNotification = "Należy podać wymiary";
+                formData.ResultNotification = "Podaj wymiary figury";
+            }
+            catch (FormatException)
+            {
+                formData.ResultNotification = "Podaj prawidłowe dane";
             }
             catch (IndexOutOfRangeException)
             {
-                formData.ResultNotification = "Należy podać wszystkie wymagane wymiary oddzielone ;";
+                formData.ResultNotification = "Podaj wszystkie wymagane wymiary w formacie podanym w instrukcji";
             }
             
             return View(formData);

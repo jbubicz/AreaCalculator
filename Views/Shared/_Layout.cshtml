@@ -45,39 +45,34 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
-
         $(document).ready(function () {
-            $("#Shapes").change(function () {
-
-                $("#FormSection").removeClass("invisible");
-                $("#FormSection").addClass("visible");
-                var selectedValue = $("#Shapes Option:Selected").text();
+            $("#Shape").change(function () {
+                var selectedValue = $("#Shape Option:Selected").text();
                 switch (selectedValue) {
                     case "Wybierz":
-                        $("#label").html("")
-                        break;
-                    case "Kwadrat":
-                        $("#label").html("<p>Podaj dane gdzie: <b>a</b> - długość boku<br>Format wprowadzania: <b>a</b></p>")
-                        break;
-                    case "Prostokąt":
-                        $("#label").html("<p>Podaj dane odzielone średnikiem gdzie: <b>a</b> - długość pierwszego boku; <b>b</b> - długość drugiego boku<br>Format wprowadzania: <b>a;b</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
-                        break;
-                    case "Równoległobok":
-                        $("#label").html("<p>Podaj dane odzielone średnikiem gdzie: <b>a</b> - długość boku; <b>h</b> - wysokość równoległoboku<br>Format wprowadzania: <b>a;h</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
-                        break;
-                    case "Romb":
-                        $("#label").html("<p>Podaj dane odzielone średnikiem gdzie: <b>a</b> - długość boku; <b>h</b> - wysokość rombu<br>Format wprowadzania: <b>a;h</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
-                        break;
-                    case "Trapez":
-                        $("#label").html("<p>Podaj dane odzielone średnikiem gdzie: <b>a</b> - długość pierwszej podstawy; <b>b</b> - długość drugiej podstawy <b>h</b> - wysokość trapezu<br>Format wprowadzania: <b>a;b;h</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
-                        break;
-                    case "Trójkąt":
-                        $("#label").html("<p>Podaj dane odzielone średnikiem gdzie: <b>a</b> - długość boku; <b>h</b> - wysokość trójkąta<br>Format wprowadzania: <b>a;h</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
+                        $("#Instruction").html("")
                         break;
                     case "Koło":
-                        $("#label").html("<p>Podaj dane gdzie: <b>r</b> - promień koła<br>Format wprowadzania: <b>r</b><br>Dodatkowe wymiary podane po ; będą pominięte.</p>")
+                        $("#Instruction").html("<p>Podaj wymiary figury: <b>r</b> - promień koła<br>Format wprowadzania: <b>r</b></p>")
                         break;
-
+                    case "Kwadrat":
+                        $("#Instruction").html("<p>Podaj wymiary figury: <b>a</b> - długość boku<br>Format wprowadzania: <b>a</b></p>")
+                        break;
+                    case "Prostokąt":
+                        $("#Instruction").html("<p>Podaj wymiary figury odzielone <b>średnikiem</b>, w których: <b>a</b > - długość pierwszego boku; <b>b</b> - długość drugiego boku <br>Format wprowadzania: <b>a;b</b><br>Dodatkowe dane podane po ; zostaną pominięte.</p>")
+                        break;
+                    case "Romb":
+                        $("#Instruction").html("<p>Podaj wymiary figury odzielone <b>średnikiem</b>, w których: <b>a</b> - długość boku; <b>h</b> - wysokość rombu<br>Format wprowadzania: <b>a;h</b><br>Dodatkowe dane podane po ; zostaną pominięte.</p>")
+                        break;
+                    case "Równoległobok":
+                        $("#Instruction").html("<p>Podaj wymiary figury odzielone <b>średnikiem</b>, w których: <b>a</b> - długość boku; <b>h</b> - wysokość równoległoboku<br>Format wprowadzania: <b>a;h</b><br>Dodatkowe dane podane po ; zostaną pominięte.</p>")
+                        break;
+                    case "Trapez":
+                        $("#Instruction").html("<p>Podaj wymiary figury odzielone <b>średnikiem</b>, w których: <b>a</b> - długość pierwszej podstawy; <b>b</b> - długość drugiej podstawy; <b>h</b> - wysokość trapezu<br>Format wprowadzania: <b>a;b;h</b><br>Dodatkowe dane podane po ; zostaną pominięte.</p>")
+                        break;
+                    case "Trójkąt":
+                        $("#Instruction").html("<p>Podaj wymiary figury odzielone <b>średnikiem</b>, w których: <b>a</b> - długość boku; <b>h</b> - wysokość trójkąta<br>Format wprowadzania: <b>a;h</b><br>Dodatkowe dane podane po ; zostaną pominięte.</p>")
+                        break;
                 }
             })
         })
