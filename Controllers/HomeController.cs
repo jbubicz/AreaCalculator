@@ -39,26 +39,27 @@ namespace AreaCalculator.Controllers
         [HttpPost]
         public ActionResult Index(FigureData formData)
         {
-            string sizes = formData.Sizes;
+            string dims = formData.Dimensions;
             double result = 0;
 
             try
             {
-                if (formData.Sizes.Contains("."))
+                if (formData.Dimensions.Contains("."))
                 {
-                    sizes = formData.Sizes.Replace('.', ',');
+                    dims = formData.Dimensions.Replace('.', ',');
                 }
-                string[] sizesArray = sizes.Split(new Char[] { ';' });
+                string[] sizesArray = dims.Split(new Char[] { ';' });
 
 
                 switch (formData.Shape)
                 {
                     case Shapes.Kwadrat:
-                        Square sq = new Square();
-                        sq.a = Convert.ToDouble(sizesArray[0].Trim());
-                        result = Math.Round(sq.CalculateArea(), 2);
+                        Square square = new Square();
+                        square.DimA = Convert.ToDouble(sizesArray[0].Trim());
+                        result = Math.Round(square.CalculateArea(), 2);
                         break;
                 }
+
                 formData.ResultNotification = string.Format("Pole powierzchni wybranej figury {0} wynosi: {1}", formData.Shape, result);
             
             }

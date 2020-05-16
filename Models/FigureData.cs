@@ -9,8 +9,7 @@ namespace AreaCalculator.Models
     public class FigureData
     {
         public Shapes Shape { get; set;}
-        public string Sizes { get; set; }
+        public string Dimensions { get; set; }
         public string ResultNotification { get; set; }
-        
     }
 }

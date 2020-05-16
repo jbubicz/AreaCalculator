@@ -9,13 +9,13 @@ namespace AreaCalculator.Enums
     public enum Shapes
     {
         Wybierz = 0,
-        Kwadrat = 7,
-        Prostokąt = 1,
-        Równoległobok = 2,
-        Romb = 3,
-        Trapez = 4,
-        Trójkąt = 5,
-        Koło = 6
+        Koło = 1,
+        Kwadrat = 2,
+        Prostokąt = 3,
+        Romb = 4,
+        Równoległobok = 5,
+        Trapez = 6,
+        Trójkąt = 7        
     }
 
     
