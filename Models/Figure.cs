@@ -12,7 +12,7 @@ namespace AreaCalculator.Models
         public Shapes Shape { get; set; }
 
         public string Sizes { get; set; }
-        public abstract double CalculateArea(Figure figure);
+        public abstract double CalculateArea();
 
     }
 }

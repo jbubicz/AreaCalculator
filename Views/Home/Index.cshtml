@@ -1,34 +1,43 @@
 ﻿@using AreaCalculator.Enums;
-@model AreaCalculator.Models.FormData;
+@model AreaCalculator.Models.FigureData;
 @{
-    ViewData["Title"] = "Kalkulator powierzchni";
+    ViewData["Title"] = "Kalkulator powierzchni figur płaskich";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Kalkulator powierzchni</h1>
+    <h1 class="display-4">Kalkulator powierzchni figur płaskich</h1>
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col mt-5 center-c">
+            <p class="lead">
+                Kalkulator wylicza pole powierzchni dla wybranej dwuwymiarowej figury geometrcznej
+            </p>
             @using (Html.BeginForm())
             {
                 <form method="post">
-                    <div class="centered">
-                        @Html.DropDownListFor(m => m.Shapes, new SelectList(Enum.GetValues(typeof(Shapes))), 
-                       "Wybierz figurę:", new { @class = "form-control" })
+                    <label for="Shapes">Obliczenia będą wykonane dla figury:</label>
+                    <div class="form-group centered m-3">
+                        @Html.DropDownListFor(m => m.Shape, new SelectList(Enum.GetValues(typeof(Shapes))),
+                       new { @class = "form-control" })
                     </div>
-                    <div class="invisible" id="FormSection">
-                        <div id="label" class="mt-3"></div>
+                    <div id="FormSection" class="form-group">
+                        <div id="label" class="mt-3 form-group"></div>
                         <div class="centered m-3">
-                            <input id="Sizes" class="form-control" name="Sizes" type="text" />
+                            <label for="Sizes">Wymiary:</label>
+                            <input id="Sizes" class="form-control" name="Sizes" type="text" value="@Model.Sizes" />
+                            <br />
+                            <input class="btn btn-primary" type="submit" value="Oblicz" />
                         </div>
-                        <button class="btn btn-primary" type="submit">Oblicz</button>
-                        <button class="btn btn-secondary" type="reset">Reset</button>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="form-group">
+                        <div id="Area" class="mt-3 mb-5">@Model.ResultNotification</div>
                     </div>
                 </form>
             }
-            <div id="Area" class="mt-3 mb-5">@Model.Area</div>
         </div>
     </div>
 </div>

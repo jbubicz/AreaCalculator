@@ -21,8 +21,7 @@ namespace AreaCalculator.Controllers
 
         public IActionResult Index()
         {
-            FormData form = new FormData().ChosenFigure = null;
-            return View(new FormData());
+            return View(new FigureData());
             //return View();
         }
 
@@ -38,22 +37,43 @@ namespace AreaCalculator.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(FormData formData)
+        public ActionResult Index(FigureData formData)
         {
             string sizes = formData.Sizes;
             double result = 0;
 
-            switch (formData.ChosenFigure)
+            try
             {
-                case Shapes.Kwadrat:
-                    Square sq = new Square();
-                    sq.a = Convert.ToDouble(sizes.Trim());
-                    result = Math.Round(sq.CalculateArea(sq), 3);
-                    break;
+                if (formData.Sizes.Contains("."))
+                {
+                    sizes = formData.Sizes.Replace('.', ',');
+                }
+                string[] sizesArray = sizes.Split(new Char[] { ';' });
 
-              
+
+                switch (formData.Shape)
+                {
+                    case Shapes.Kwadrat:
+                        Square sq = new Square();
+                        sq.a = Convert.ToDouble(sizesArray[0].Trim());
+                        result = Math.Round(sq.CalculateArea(), 2);
+                        break;
+                }
+                formData.ResultNotification = string.Format("Pole powierzchni wybranej figury {0} wynosi: {1}", formData.Shape, result);
+            
             }
-            formData.Area = "Pole wynosi: "+ result;
+            catch (FormatException)
+            {
+                formData.ResultNotification = "Podano nieprawidłowe dane";
+            }
+            catch (NullReferenceException)
+            {
+                formData.ResultNotification = "Należy podać wymiary";
+            }
+            catch (IndexOutOfRangeException)
+            {
+                formData.ResultNotification = "Należy podać wszystkie wymagane wymiary oddzielone ;";
+            }
             
             return View(formData);
         }

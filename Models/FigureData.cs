@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AreaCalculator.Models
 {
-    public class FormData
+    public class FigureData
     {
-        public Shapes Shapes { get; set;}
-        public Shapes ChosenFigure { get; set;}
+        public Shapes Shape { get; set;}
         public string Sizes { get; set; }
-        public string Area { get; set; }
+        public string ResultNotification { get; set; }
+        
     }
 }

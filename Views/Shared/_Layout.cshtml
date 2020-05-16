@@ -42,16 +42,20 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
+
         $(document).ready(function () {
             $("#Shapes").change(function () {
-                $("#Area").text("");
+
                 $("#FormSection").removeClass("invisible");
                 $("#FormSection").addClass("visible");
                 var selectedValue = $("#Shapes Option:Selected").text();
                 switch (selectedValue) {
-
+                    case "Wybierz":
+                        $("#label").html("")
+                        break;
                     case "Kwadrat":
                         $("#label").html("<p>Podaj dane gdzie: <b>a</b> - długość boku<br>Format wprowadzania: <b>a</b></p>")
                         break;

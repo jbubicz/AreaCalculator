@@ -10,11 +10,9 @@ namespace AreaCalculator.Models
     {
         private readonly string Name = Shapes.Kwadrat.ToString();
         public double a { get; set; }
-
-        public override double CalculateArea(Figure figure)
-        {
-            double area = this.a * this.a; 
-            return area;
+        public override double CalculateArea()
+        {            
+            return a*a;
         }
     }
 }
