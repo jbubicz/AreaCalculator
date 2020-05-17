@@ -74,6 +74,14 @@
                         $("#Instruction").html("<p>Podaj wymiary figury odzielone <b>średnikiem</b>, w których: <b>a</b> - długość boku; <b>h</b> - wysokość trójkąta<br>Format wprowadzania: <b>a;h</b><br>Dodatkowe dane podane po ; zostaną pominięte.</p>")
                         break;
                 }
+                var result = $("#Result");
+                if ($("#Shape").value == null) {
+                    result.attr("hidden", true)
+                } else {
+                    result.attr("hidden", false)
+                }
+
+                $("#Dimensions").val("");
             })
         })
     </script>
